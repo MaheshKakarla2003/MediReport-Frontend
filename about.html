@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>About | MediReport</title>
+
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/table.css" />
+    <link rel="stylesheet" href="styles/toast.css" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- GLOBAL JS -->
+    <script defer src="js/toast.js"></script>
+    <script defer src="js/pages/about.js"></script>
+</head>
+<style>
+    .card {
+        width: 1000px;
+    }
+</style>
+
+<body>
+
+    <!-- TOAST -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2 class="nav-left">
+            <a class="nav-left" href="hospital-dashboard.html">MediReport</a>
+        </h2>
+        <div class="nav-right">
+            <button id="home" class="btn-link">Home</button>
+            <a href="about.html">About</a>
+            <button id="profile" class="btn-link">Profile</button>
+            <button id="logoutBtn" class="btn-link">Logout</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="page-container">
+
+        <!-- HERO -->
+        <section class="welcome-section">
+            <h1 class="app-title">About MediReport</h1>
+            <h2 class="subtitle">
+                Secure, centralized, and patient-focused medical record management.
+            </h2>
+        </section>
+
+        <!-- ABOUT CARD -->
+        <section class="card about-card">
+
+            <div class="about-content">
+
+                <!-- LEFT: TEXT -->
+                <div class="about-text">
+                    <h3>What is MediReport?</h3>
+                    <p>
+                        MediReport is a centralized medical records platform designed to help
+                        hospitals and patients manage medical visits, diagnoses, and documents
+                        securely in one place.
+                    </p>
+
+                    <p>
+                        It eliminates paper-based records and enables patients to access
+                        their medical history across multiple hospitals with ease.
+                    </p>
+
+                    <h3>Who is it for?</h3>
+                    <ul class="about-list">
+                        <li><i class="fa-solid fa-hospital"></i> Hospitals & Clinics</li>
+                        <li><i class="fa-solid fa-user"></i> Patients / Customers</li>
+                    </ul>
+
+                    <h3>Built By</h3>
+                    <p>
+                        MediReport is developed as a full-stack healthcare platform focusing
+                        on clean architecture, scalability, and real-world medical workflows.
+                    </p>
+                </div>
+
+                <!-- RIGHT: IMAGE -->
+                <div class="about-image">
+                    <img src="assets/profile-pic.jpg" alt="Mahesh Kakarla" />
+                    <h4>Mahesh Kakarla</h4>
+                    <span>Java Backend Developer</span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 MediReport. Secure Medical Records Platform.
+    </footer>
+
+</body>
+
+</html>

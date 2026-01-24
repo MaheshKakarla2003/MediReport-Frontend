@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register Patient | MediReport</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/table.css">
+
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+    <script defer src="js/pages/patient-upload.js"></script>
+</head>
+
+<body>
+
+    <!-- Global Toast -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2 class="nav-left"> <a class="nav-left" href="hospital-dashboard.html">MediReport</a></h2>
+        <div class="nav-right">
+            <button id="home" class="btn-link">Home</button>
+            <a href="about.html">About</a>
+            <button id="profile" class="btn-link">Profile</button>
+            <button id="logoutBtn" class="btn-link">Logout</button>
+        </div>
+    </nav>
+
+    <div class="page-center">
+        <div class="card">
+
+            <h1 class="app-title">MediReport</h1>
+            <p class="subtitle">Upload A Patient</p>
+
+            <form id="patientUploadForm">
+
+
+
+                <!-- Patient Name -->
+                <div class="form-group">
+                    <label>Patient Full Name (as per Aadhar)</label>
+                    <input type="text" name="fullName" placeholder="Enter Patient Name" />
+                    <small class="error" id="fullName-error"></small>
+                </div>
+                <!-- Aadhar Number -->
+                <div class="form-group  ">
+                    <label>Aadhar Number</label>
+                    <input type="text" name="aadhaar" placeholder="Enter Aadhar Number" />
+                    <small class="error" id="aadhaar-error"></small>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" name="phoneNumber" placeholder="Enter Contact Number" />
+                        <small class="error" id="phoneNumber-error"></small>
+                    </div>
+
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="text" name="age" placeholder="Enter Age" />
+                        <small class="error" id="age-error"></small>
+                    </div>
+
+
+                    <!-- Gender -->
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <input type="text" name="gender" placeholder="Enter Gender" />
+                        <small class="error" id="gender-error"></small>
+                    </div>
+
+
+
+
+                    <button type="submit" class="btn-primary">
+                        Upload Patient
+                    </button>
+
+            </form>
+
+            <div class="form-footer">
+                <a href="./hospital-dashboard.html"> Go Back to Home</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 MediReport. Secure Medical Records Platform.
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MediReport - Upload Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/table.css">
+
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+    <script defer src="js/pages/document-upload.js"></script>
+
+</head>
+
+<body>
+
+
+    <!-- Global Toast -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2 class="nav-left"> <a class="nav-left" href="hospital-dashboard.html">MediReport</a></h2>
+        <div class="nav-right">
+            <button id="home" class="btn-link">Home</button>
+            <a href="about.html">About</a>
+            <button id="profile" class="btn-link">Profile</button>
+            <button id="logoutBtn" class="btn-link">Logout</button>
+        </div>
+    </nav>
+
+    <div class="page-center">
+        <div class="card">
+
+            <h1 class="app-title">Upload Document</h1>
+            <p class="subtitle">Upload patient documents easily</p>
+
+            <form id="document-uploadForm">
+                <!-- Visit ID -->
+                <div class="form-group">
+                    <label for="visitId">Visit ID</label>
+                    <input type="number" id="visitId" name="visitId" placeholder="Enter Visit Id">
+                    <small class="error" id="visitId-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="docType">Document Type</label>
+                    <select id="docType" name="docType">
+                        <option value="">-- Select --</option>
+                        <option value="OP FORM">OP FORM</option>
+                        <option value="MEDICAL RECEIPT">MEDICAL RECEIPT</option>
+                        <option value="PRESCRIPTION">PRESCRIPTION</option>
+                        <option value="LAB REPORT">LAB REPORT</option>
+                        <option value="DISCHARGE SUMMARY">DISCHARGE SUMMARY</option>
+                        <option value="X-Ray">X-RAY REPORT</option>
+                        <option value="OTHER">OTHER</option>
+                    </select>
+                    <small class="error" id="docType-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description (optional)</label>
+                    <textarea id="description" name="description" rows="2" placeholder="Enter Description"></textarea>
+                    <small class="error" id="description-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="fileName">File Name</label>
+                    <input type="text" id="fileName" name="fileName" placeholder="Enter file name">
+                    <small class="error" id="fileName-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportDate">Document/Report Date</label>
+                    <input type="date" id="reportDate" name="reportDate">
+                    <small class="error" id="reportDate-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="file">Document File (PDF / Image)</label>
+                    <input type="file" id="file" name="file">
+                    <small class="error" id="file-error"></small>
+                </div>
+
+
+
+                <button type="submit" class="btn-primary">
+                    Upload Document/Report
+                </button>
+
+            </form>
+
+            <div class="form-footer">
+                <a href="./hospital-dashboard.html">Back to Home</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 MediReport. Secure Medical Records Platform.
+    </footer>
+
+</body>
+
+</html>

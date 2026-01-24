@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Patient Management | MediReport</title>
+
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/table.css" />
+    <link rel="stylesheet" href="styles/toast.css" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- GLOBAL JS -->
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+
+    <!-- PAGE JS -->
+    <script defer src="js/pages/patient-management.js"></script>
+    <style>
+        body {
+            min-height: 0vh;
+        }
+
+        .card {
+            width: 1000px;
+        }
+
+        .main-heading {
+            text-align: center;
+            display: inline-block;
+            margin-left: 280px;
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+        .btn-primary {
+            width: 50%;
+            transform: translate(45%);
+
+        }
+
+        .section-title {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOAST -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2 class="nav-left">
+            <a href="hospital-dashboard.html">MediReport</a>
+        </h2>
+        <div class="nav-right">
+            <button id="home" class="btn-link">Home</button>
+            <a href="about.html">About</a>
+            <button id="profile" class="btn-link">Profile</button>
+            <button id="logoutBtn" class="btn-link">Logout</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="page-container">
+
+        <!-- WELCOME -->
+        <section class="welcome-section">
+            <h1 class="app-title" id="welcomeText">Welcome back</h1>
+            <p class="subtitle">
+                Manage your hospital's patients, visits, and documents.
+            </p>
+        </section>
+
+        <!-- PATIENTS -->
+        <section id="patientsSection" class="card">
+            <h3 class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Patients</span>
+                <button class="btn-secondary" id="addPatientBtn" style="font-size: 14px; padding: 8px 16px;">
+                    <i class="fa-solid fa-plus"></i> Add Patient
+                </button>
+            </h3>
+            <small class="error" id="no-patients"></small>
+            <table id="patientsTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- VISITS -->
+        <section id="visitsSection" class="card hidden">
+            <h3 class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Visits for <span id="selectedPatientName"></span></span>
+                <button class="btn-secondary" id="createVisitBtn" style="font-size: 14px; padding: 8px 16px;">
+                    <i class="fa-solid fa-plus"></i> Create Visit
+                </button>
+            </h3>
+            <small class="error" id="no-visits"></small>
+            <table id="visitsTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Visit Date</th>
+                        <th>Diagonosed By</th>
+                        <th>Diagnosis</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- DOCUMENTS -->
+        <section id="documentsSection" class="card hidden">
+            <h3 class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Documents for <span id="selectedVisitName"></span></span>
+                <button class="btn-secondary" id="addDocumentBtn" style="font-size: 14px; padding: 8px 16px;">
+                    <i class="fa-solid fa-plus"></i> Add Document
+                </button>
+            </h3>
+            <small class="error" id="no-documents"></small>
+            <table id="documentsTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File Type</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 MediReport. Secure Medical Records Platform.
+    </footer>
+
+</body>
+
+</html>

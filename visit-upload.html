@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Upload Visit | MediReport</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/table.css">
+
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+    <script defer src="js/pages/visit-upload.js"></script>
+</head>
+
+<body>
+
+    <!-- Global Toast -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2 class="nav-left"> <a class="nav-left" href="hospital-dashboard.html">MediReport</a></h2>
+        <div class="nav-right">
+        <button id="home" class="btn-link">Home</button>
+        <a href="about.html">About</a>
+        <button id="profile" class="btn-link">Profile</button>
+        <button id="logoutBtn" class="btn-link">Logout</button>
+        </div>
+    </nav>
+
+    <div class="page-center">
+        <div class="card">
+
+            <h1 class="app-title">MediReport</h1>
+            <p class="subtitle">Upload Patient Visit Data</p>
+
+            <form id="visitUploadForm">
+
+
+
+                <!-- Patient ID -->
+                <div class="form-group">
+                    <label>Patient ID</label>
+                    <input type="text" name="patientId" placeholder="Enter Patient ID" />
+                    <small class="error" id="patientId-error"></small>
+                </div>
+
+                <!-- Hospital ID
+                <div class="form-group">
+                    <label>Hospital ID</label>
+                    <input type="text" name="hospitalId" placeholder="Enter Hospital ID" />
+                    <small class="error" id="hospitalId-error"></small>
+                </div> -->
+
+                <!-- Desease -->
+                <div class="form-group">
+                    <label>Disease</label>
+                    <input type="text" name="diseaseName" placeholder="Enter Disease" />
+                    <small class="error" id="diseaseName-error"></small>
+                </div>
+
+
+                <!-- Doctor Name -->
+                <div class="form-group">
+                    <label>Doctor Name</label>
+                    <input type="text" name="doctorName" placeholder="Enter Doctor Name" />
+                    <small class="error" id="doctorName-error"></small>
+                </div>
+
+                <!-- Visit Date -->
+                <div class="form-group  ">
+                    <label>Visit Date</label>
+                    <input type="date" name="visitDate" placeholder="Enter  Date" />
+                    <small class="error" id="visitDate-error"></small>
+
+
+                    <button type="submit" class="btn-primary">
+                        Upload Visit Data
+                    </button>
+
+            </form>
+
+            <div class="form-footer">
+                <a href="./hospital-dashboard.html"> Go Back to Home</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 MediReport. Secure Medical Records Platform.
+    </footer>
+</body>
+
+</html>

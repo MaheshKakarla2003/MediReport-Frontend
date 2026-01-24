@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register Hospital | MediReport</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/table.css">
+
+    <script defer src="js/api.js"></script>
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+    <script defer src="js/pages/register-hospital.js"></script>
+</head>
+
+<body>
+
+    <!-- Global Toast -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <div class="page-center">
+        <div class="card">
+
+            <h1 class="app-title">MediReport</h1>
+            <p class="subtitle">Hospital Registration</p>
+
+            <form id="hospitalRegisterForm">
+
+                <!-- Login Email -->
+                <div class="form-group">
+                    <label>Email (Username)</label>
+                    <input type="email" name="email" placeholder="Enter email" />
+                    <small class="error" id="email-error"></small>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" />
+                    <small class="error" id="password-error"></small>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" />
+                    <small class="error" id="confirmPasswordError"></small>
+                </div>
+
+                <!-- Hospital Name -->
+                <div class="form-group">
+                    <label>Hospital Name</label>
+                    <input type="text" name="hospitalName" placeholder="Enter Hospital Name" />
+                    <small class="error" id="hospitalName-error"></small>
+                </div>
+
+                <!-- Hospital Email -->
+                <div class="form-group">
+                    <label>Hospital Email</label>
+                    <input type="email" name="hospitalEmail" placeholder="Enter Hospital Email" />
+                    <small class="error" id="hospitalEmail-error"></small>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" name="phone" placeholder="Enter Contact Number" />
+                    <small class="error" id="phone-error"></small>
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea name="address" rows="3" placeholder="Enter Hospital Address"></textarea>
+                    <small class="error"></small>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Register Hospital
+                </button>
+
+            </form>
+
+            <div class="form-footer">
+                <a href="./login.html">Back to Login</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

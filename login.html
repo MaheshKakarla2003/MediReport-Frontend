@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MediReport | Login</title>
+
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/table.css">
+
+    <script defer src="js/api.js"></script>
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+    <script defer src="js/pages/login.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Global Toast -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <div class="page-center">
+        <div class="card">
+
+            <h1 class="app-title">MediReport</h1>
+            <p class="subtitle">Secure access to your medical records</p>
+
+            <form id="loginForm" novalidate>
+
+                <div class="form-group">
+                    <label for="username">Email</label>
+                    <input type="email" id="username" name="username" placeholder="Enter email" />
+                    <small class="error" id="usernameError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" />
+                    <small class="error" id="passwordError"></small>
+                </div>
+
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+
+            <div class="form-footer">
+                <p>Don’t have an account?</p>
+                <a href="register-customer.html">Register as Customer</a> |
+                <a href="register-hospital.html">Register as Hospital</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

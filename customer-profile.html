@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Customer Profile | MediReport</title>
+
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/form.css" />
+    <link rel="stylesheet" href="styles/toast.css" />
+    <link rel="stylesheet" href="styles/table.css" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- GLOBAL JS -->
+    <script defer src="js/form-utils.js"></script>
+    <script defer src="js/toast.js"></script>
+
+    <!-- PAGE JS -->
+    <script defer src="js/pages/customer-profile.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <!-- TOAST -->
+    <div id="globalToast" class="toast hidden"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2 class="nav-left">
+            <a href="customer-dashboard.html">MediReport</a>
+        </h2>
+        <div class="nav-right">
+            <a href="customer-dashboard.html">Home</a>
+            <a href="about.html">About</a>
+            <button id="logoutBtn" class="btn-link">Logout</button>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="page-container">
+
+        <section class="welcome-section">
+            <h1 class="app-title">My Profile</h1>
+            <p class="subtitle">Manage your personal information securely.</p>
+        </section>
+
+        <section class="form-card">
+
+            <form id="profileForm">
+
+                <!-- USER ID -->
+                <div class="form-group">
+                    <label>User ID</label>
+                    <input type="text" id="userId" disabled />
+                </div>
+
+                <!-- NAME -->
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name" disabled />
+                    <small class="error-text" id="nameError"></small>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label>Email (Username)</label>
+                    <input type="email" id="email" disabled />
+                    <small class="hint-text">
+                        Changing email will update your login username and force logout.
+                    </small>
+                    <small class="error-text" id="emailError"></small>
+                </div>
+
+                <!-- MOBILE -->
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="text" id="mobile" maxlength="10" disabled />
+                    <small class="error-text" id="mobileError"></small>
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="form-actions">
+                    <div class="form-actions-left">
+                        <button type="button" id="editBtn" class="table-btn download ">
+                            <i class="fa-solid fa-pen"></i> Edit Profile
+                        </button>
+                        <button type="button" id="cancelBtn" class="btn-secondary hidden">
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="form-actions-right">
+                        <button type="button" id="deleteBtn" class="table-btn delete">
+                            <i class="fa-solid fa-trash"></i> Delete Account
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" id="saveBtn" class="btn-primary hidden">
+                    <i class="fa-solid fa-save"></i> Save Changes
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 MediReport. Secure Medical Records Platform.
+    </footer>
+
+</body>
+
+</html>
