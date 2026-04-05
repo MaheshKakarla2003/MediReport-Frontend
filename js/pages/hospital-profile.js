@@ -1,5 +1,4 @@
-const API_BASE =
-  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
+const API_BASE = "http://localhost:8080/api";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -16,7 +15,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadProfile(hospitalId) {
   try {
-    const res = await fetch(`${API_BASE}/hospitals/${hospitalId}`);
+    const res = await authenticatedFetch(
+      `${API_BASE}/hospitals/hospitalRole/${hospitalId}`,
+    );
     if (!res.ok) throw new Error("Failed to load profile");
 
     const data = await res.json();
@@ -118,8 +119,8 @@ async function saveProfile(originalData) {
 
   try {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    const res = await fetch(
-      `${API_BASE}/update-hospital/${originalData.id}/${user.id}`,
+    const res = await authenticatedFetch(
+      `${API_BASE}/hospitalRole/update-hospital/${originalData.id}/${user.id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -165,7 +166,7 @@ async function deleteAccount(userId) {
   }
 
   try {
-    const res = await fetch(`${API_BASE}/${userId}`, {
+    const res = await authenticatedFetch(`${API_BASE}/${userId}`, {
       method: "DELETE",
     });
 

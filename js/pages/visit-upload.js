@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const BASE_URL =
-  "https://medireport-fullstack-sprinboot-project.onrender.com/api/visits";
+const BASE_URL = "http://localhost:8080/api/visits/hospitalRole";
 
 const form = document.getElementById("visitUploadForm");
 
@@ -43,7 +42,7 @@ form.addEventListener("submit", async (e) => {
   );
 
   try {
-    const response = await fetch(`${BASE_URL}`, {
+    const response = await authenticatedFetch(`${BASE_URL}`, {
       method: "POST",
       body: data,
     });

@@ -1,5 +1,4 @@
-const API_BASE =
-  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
+const API_BASE = "http://localhost:8080/api";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -10,7 +9,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // Load customer
-  const customerRes = await fetch(`${API_BASE}/customers/${user.customerId}`);
+  const customerRes = await authenticatedFetch(
+    `${API_BASE}/customers/customerRole/${user.customerId}`,
+  );
   if (!customerRes.ok) {
     showToast("Failed to load customer data", "error");
     return;
@@ -51,11 +52,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function fetchPatients(phone) {
   resetSections("patients");
 
-  const res = await fetch(
-    `${API_BASE}/patients/by-phone?phone=${encodeURIComponent(phone)}`,
+  const res = await authenticatedFetch(
+    `${API_BASE}/patients/customerRole/by-phone?phone=${encodeURIComponent(phone)}`,
   );
 
   const patients = await res.json();
+
   if (patients.length === 0) {
     // Show no records message
     document.getElementById("noRecordsSection").classList.remove("hidden");
@@ -90,13 +92,14 @@ async function fetchPatients(phone) {
   showSection("patientsSection");
 }
 
+//////////////////////////////////////////////
 async function fetchHospitals(aadhaar, phoneNumber, patientName, patientId) {
   resetSections("hospitals");
   clearFieldErrors();
   document.getElementById("selectedPatientName").innerText = patientName;
 
-  const res = await fetch(
-    `${API_BASE}/patients/hospitalList/${aadhaar}/${phoneNumber}`,
+  const res = await authenticatedFetch(
+    `${API_BASE}/patients/customerRole/hospitalList/${aadhaar}/${phoneNumber}`,
   );
   if (!res.ok) {
     const error = document.getElementById("no-hospitals");
@@ -139,7 +142,7 @@ async function fetchVisits(patientId, hospitalId, hospitalName) {
   resetSections("visits");
   document.getElementById("selectedHospitalName").innerText = hospitalName;
 
-  const res = await fetch(
+  const res = await authenticatedFetch(
     `${API_BASE}/visits/patient/${patientId}/hospital/${hospitalId}`,
   );
   if (!res.ok) {
@@ -184,7 +187,9 @@ async function fetchDocuments(visitId, visitName) {
   resetSections("documents");
   document.getElementById("selectedVisitName").innerText = visitName;
 
-  const res = await fetch(`${API_BASE}/documents/visit/${visitId}`);
+  const res = await authenticatedFetch(
+    `${API_BASE}/documents/visit/${visitId}`,
+  );
   if (!res.ok) {
     const error = document.getElementById("no-documents");
     error.textContent = `No documents found for ${visitName}`;
@@ -210,15 +215,11 @@ async function fetchDocuments(visitId, visitName) {
                 <td>
                     <div class="table-actions">
                         <button class="table-btn view"
-                            onclick="window.open('${API_BASE}/documents/${
-                              d.id
-                            }/file')">
+                            onclick="viewDocument(${d.id})">
                             <i class="fa-solid fa-eye"></i> Open
                         </button>
                         <button class="table-btn download"
-                            onclick="window.location.href='${API_BASE}/documents/${
-                              d.id
-                            }/download'">
+                                  onclick="downloadDocument(${d.id})">
                             <i class="fa-solid fa-download"></i> Download
                         </button>
                     </div>
@@ -227,6 +228,45 @@ async function fetchDocuments(visitId, visitName) {
   });
 
   showSection("documentsSection");
+}
+async function viewDocument(docId) {
+  const response = await authenticatedFetch(
+    `${API_BASE}/documents/${docId}/file`,
+  );
+
+  const blob = await response.blob();
+
+  const url = window.URL.createObjectURL(blob);
+  window.open(url);
+}
+
+async function downloadDocument(docId) {
+  const token = localStorage.getItem("token");
+
+  const response = await authenticatedFetch(
+    `${API_BASE}/documents/${docId}/download`,
+  );
+
+  if (!response.ok) {
+    alert("Download failed");
+    return;
+  }
+
+  const blob = await response.blob();
+
+  // Create download link
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+
+  // optional filename
+  a.download = `document_${docId}`;
+
+  document.body.appendChild(a);
+  a.click();
+
+  a.remove();
+  window.URL.revokeObjectURL(url);
 }
 
 /* ===================== HELPERS ===================== */

@@ -1,5 +1,4 @@
-const BASE_URL =
-  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
+const BASE_URL = "http://localhost:8080/api";
 
 const form = document.getElementById("hospitalRegisterForm");
 

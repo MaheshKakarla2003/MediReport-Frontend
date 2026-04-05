@@ -83,6 +83,44 @@
         #searchBtn:hover {
             background: #0056b3;
         }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .pagination-btn {
+            padding: 6px 12px;
+            font-size: 12px;
+            background: #fff;
+            color: #3498db;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0 !important;
+            line-height: 1.2;
+            vertical-align: middle;
+        }
+
+        .pagination-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .page-number {
+            padding: 6px 10px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #333;
+            font-size: 12px;
+            line-height: 1.2;
+            vertical-align: middle;
+            display: inline-block;
+        }
     </style>
     </style>
 </head>
@@ -161,6 +199,11 @@
                 </thead>
                 <tbody></tbody>
             </table>
+            <div class="pagination-container">
+                <button class="btn-secondary pagination-btn" onclick="prevPatientPage()">Prev</button>
+                <span class="page-number" id="patients-PageNumber">1</span>
+                <button class="btn-secondary pagination-btn" onclick="nextPatientPage()">Next</button>
+            </div>
         </section>
 
         <!-- VISITS -->
@@ -210,50 +253,7 @@
             </table>
         </section>
 
-        <!-- ACTION CARDS (COMMENTED OUT) -->
-        <!--
-        <section class="card-grid">
 
-            <div class="action-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
-                <h3>Create Patient</h3>
-                <p>Register a new patient under your hospital records.</p>
-                <button class="btn-primary" id="createPatientBtn">Create Patient</button>
-            </div>
-
-            <div class="action-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-notes-medical"></i>
-
-                </div>
-                <h3>Create Visit</h3>
-                <p>Record a new visit including diagnosis and doctor details.</p>
-                <button class="btn-primary" id="createVisitBtn">Create Visit</button>
-            </div>
-
-            <div class="action-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-file-medical"></i>
-
-                </div>
-                <h3>Upload Document</h3>
-                <p>Upload lab reports, prescriptions, and medical files.</p>
-                <button class="btn-primary" id="uploadDocumentBtn">Upload Document</button>
-            </div>
-
-            <div class="action-card">
-                <div class="card-icon">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <h3>Patient Management</h3>
-                <p>View and manage all patients, their visits, and documents.</p>
-                <button class="btn-primary" id="patientManagementBtn">Manage Patients</button>
-            </div>
-
-        </section>
-        -->
 
     </main>
 

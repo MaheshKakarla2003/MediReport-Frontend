@@ -1,5 +1,4 @@
-const BASE_URL =
-  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
+const BASE_URL = "http://localhost:8080/api";
 
 const form = document.getElementById("loginForm");
 const usernameInput = document.getElementById("username");
@@ -48,8 +47,15 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    // Store logged-in user
+    // Check if authentication failed (jwtToken is "failure")
+    if (data.jwtToken === "failure") {
+      showToast("Authentication failed", "error");
+      return;
+    }
+
+    // Store logged-in user with JWT token
     localStorage.setItem("loggedInUser", JSON.stringify(data));
+    localStorage.setItem("token", data.jwtToken);
 
     showToast("Login successful", "success");
 

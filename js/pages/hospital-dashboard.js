@@ -1,5 +1,4 @@
-const API_BASE =
-  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
+const API_BASE = "http://localhost:8080/api";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -8,9 +7,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "login.html";
   }
 
-  const response = await fetch(`${API_BASE}/hospitals/${user.hospitalId}`, {
-    method: "GET",
-  });
+  const response = await authenticatedFetch(
+    `${API_BASE}/hospitals/hospitalRole/${user.hospitalId}`,
+    {
+      method: "GET",
+    },
+  );
 
   if (!response.ok) {
     showToast("Failed to load hospital data", "error");
@@ -86,12 +88,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
+//centralized pagination state object
+const paginationState = {
+  patients: { page: 0, totalPages: 1 },
+  visits: { page: 0, totalPages: 1 },
+  documents: { page: 0, totalPages: 1 },
+};
+
 async function loadPatients(hospitalId) {
   try {
-    const res = await fetch(`${API_BASE}/patients/by-hospitalId/${hospitalId}`);
-    if (!res.ok) throw new Error("Failed to load patients");
+    const res = await fetchPaginatedData(
+      `${API_BASE}/patients/hospitalRole/by-hospitalId/${hospitalId}`,
+      paginationState.patients.page,
+      4,
+    );
 
-    const patients = await res.json();
+    // update total pages
+    paginationState.patients.totalPages = res.totalPages;
+    // update UI page number
+    document.getElementById("patients-PageNumber").innerText =
+      paginationState.patients.page + 1;
+
+    // extracting patients data  from paginated response
+    const patients = res.content;
+
     const tbody = document.querySelector("#patientsTable tbody");
     tbody.innerHTML = "";
 
@@ -140,12 +160,33 @@ async function loadPatients(hospitalId) {
   }
 }
 
+//pagination functions for patients
+
+function nextPatientPage() {
+  const state = paginationState.patients;
+  if (state.page < state.totalPages - 1) {
+    state.page++;
+
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    loadPatients(user.hospitalId);
+  }
+}
+
+function prevPatientPage() {
+  const state = paginationState.patients;
+  if (state.page > 0) {
+    state.page--;
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    loadPatients(user.hospitalId);
+  }
+}
+////////////////////// End of pagination functions
 async function viewVisits(patientId, patientName) {
   window.currentPatientId = patientId;
   document.getElementById("selectedPatientName").innerText = patientName;
 
   try {
-    const res = await fetch(
+    const res = await authenticatedFetch(
       `${API_BASE}/visits/patient/${patientId}/hospital/${
         JSON.parse(localStorage.getItem("loggedInUser")).hospitalId
       }`,
@@ -202,7 +243,9 @@ async function viewDocuments(visitId, visitName) {
   document.getElementById("selectedVisitName").innerText = visitName;
 
   try {
-    const res = await fetch(`${API_BASE}/documents/visit/${visitId}`);
+    const res = await authenticatedFetch(
+      `${API_BASE}/documents/visit/${visitId}`,
+    );
     if (!res.ok) throw new Error("Failed to load documents");
 
     const documents = await res.json();
@@ -228,9 +271,7 @@ async function viewDocuments(visitId, visitName) {
         <td>${doc.reportDate}</td>
         <td>
           <div class="table-actions">
-            <button class="table-btn view" onclick="window.open('${API_BASE}/documents/${
-              doc.id
-            }/file')">
+            <button class="table-btn view" onclick="viewDocument(${doc.id})">
               <i class="fa-solid fa-eye"></i> Open
             </button>
             <button class="table-btn delete" onclick="deleteDocument(${
@@ -246,6 +287,17 @@ async function viewDocuments(visitId, visitName) {
   } catch (err) {
     showToast(err.message, "error");
   }
+}
+
+async function viewDocument(docId) {
+  const response = await authenticatedFetch(
+    `${API_BASE}/documents/${docId}/file`,
+  );
+
+  const blob = await response.blob();
+
+  const url = window.URL.createObjectURL(blob);
+  window.open(url);
 }
 
 async function searchPatientsByPhone(input, hospitalId) {
@@ -264,7 +316,7 @@ async function searchPatientsByPhone(input, hospitalId) {
         "Mobile number must contain only 10 digits";
       return;
     }
-    apiUrl = `${API_BASE}/patients/by-hospitalId&mobile/${hospitalId}/${input}`;
+    apiUrl = `${API_BASE}/patients/hospitalRole/by-hospitalId&mobile/${hospitalId}/${input}`;
     searchType = "mobile";
   } else if (inputLength === 12) {
     // Search by Aadhaar number
@@ -273,7 +325,7 @@ async function searchPatientsByPhone(input, hospitalId) {
         "Aadhaar number must contain only 12 digits";
       return;
     }
-    apiUrl = `${API_BASE}/patients/${input}/${hospitalId}`;
+    apiUrl = `${API_BASE}/patients/hospitalRole/${input}/${hospitalId}`;
     searchType = "aadhaar";
   } else {
     // Invalid input length
@@ -283,7 +335,7 @@ async function searchPatientsByPhone(input, hospitalId) {
   }
 
   try {
-    const res = await fetch(apiUrl);
+    const res = await authenticatedFetch(apiUrl);
     if (!res.ok) throw new Error("Failed to search patients");
 
     const patients = await res.json();
@@ -345,9 +397,12 @@ async function deletePatient(patientId, patientName) {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/patients/${patientId}`, {
-      method: "DELETE",
-    });
+    const response = await authenticatedFetch(
+      `${API_BASE}/patients/hospitalRole/${patientId}`,
+      {
+        method: "DELETE",
+      },
+    );
 
     if (!response.ok) {
       throw new Error("Failed to delete patient");
@@ -372,9 +427,12 @@ async function deleteVisit(visitId, diseaseName) {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/visits/${visitId}`, {
-      method: "DELETE",
-    });
+    const response = await authenticatedFetch(
+      `${API_BASE}/visits/hospitalRole/${visitId}`,
+      {
+        method: "DELETE",
+      },
+    );
 
     if (!response.ok) {
       throw new Error("Failed to delete visit");
@@ -403,9 +461,12 @@ async function deleteDocument(documentId, docType) {
   }
 
   try {
-    const response = await fetch(`${API_BASE}/documents/${documentId}`, {
-      method: "DELETE",
-    });
+    const response = await authenticatedFetch(
+      `${API_BASE}/documents/hospitalRole/${documentId}`,
+      {
+        method: "DELETE",
+      },
+    );
 
     if (!response.ok) {
       throw new Error("Failed to delete document");
