@@ -2,7 +2,7 @@
 
 A role-based medical records management system built with Spring Boot and PostgreSQL for managing hospital patients and medical documents.
 
-Live demo Link : [https://medi-report-frontend-6zg78h6x5-maheshkakarla2003s-projects.vercel.app/login.html]
+Live demo Link : [[https://medi-report-frontend-6zg78h6x5-maheshkakarla2003s-projects.vercel.app/login.html]]
 
 ## Features
 
