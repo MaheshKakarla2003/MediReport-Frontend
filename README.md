@@ -19,10 +19,10 @@ Live demo Link : [[https://medi-report-frontend-6zg78h6x5-maheshkakarla2003s-pro
 - **Database**: PostgreSQL
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Deployment**: Docker, Render
-  
-  <img width="1500" height="500" alt="image" src="https://github.com/user-attachments/assets/ed9e6e27-eaee-490f-b0db-77f4d98c3575" />
-  <img width="1500" height="500" alt="image" src="https://github.com/user-attachments/assets/5d2bbdf4-d592-4bc4-8e48-165833804de9" />
-  <img width="1500" height="500" alt="image" src="https://github.com/user-attachments/assets/93126a89-a3f3-4390-b71c-3aeb6d1324a4" />
+<img width="1000" height="450" alt="Screenshot 2026-04-05 121127" src="https://github.com/user-attachments/assets/d2923da8-043e-4215-a6de-96131312952e" />
+<img width="1000" height="450" alt="Screenshot 2026-04-05 121053" src="https://github.com/user-attachments/assets/5a0541ad-df12-46a5-a356-ee10775de542" />
+   <img width="1000" height="450" alt="Screenshot 2026-04-05 121032" src="https://github.com/user-attachments/assets/43857284-b312-4aaf-8c1b-1b3a7216d88e" />
+
 
 
 
