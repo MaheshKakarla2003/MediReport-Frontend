@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const BASE_URL = "http://localhost:8080/api/documents/hospitalRole/upload";
+const BASE_URL =
+  "https://medireport-fullstack-sprinboot-project.onrender.com/api/documents/hospitalRole/upload";
 
 const form = document.getElementById("document-uploadForm");
 

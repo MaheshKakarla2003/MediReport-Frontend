@@ -1,4 +1,5 @@
-const API_BASE = "http://localhost:8080/api";
+const API_BASE =
+  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));

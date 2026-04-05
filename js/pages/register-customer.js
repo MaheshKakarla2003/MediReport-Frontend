@@ -1,7 +1,7 @@
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL =
+  "https://medireport-fullstack-sprinboot-project.onrender.com/api";
 
-// http://localhost:8080/api
-//  https://medireport-fullstack-sprinboot-project.onrender.com/api
+// https://medireport-fullstack-sprinboot-project.onrender.com/api
 
 const form = document.getElementById("customerRegisterForm");
 
